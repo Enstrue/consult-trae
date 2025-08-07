@@ -1,0 +1,151 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+  background-color: $background-color;
+  
+  &__container {
+    @include container;
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    
+    @include lg {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  
+  &__text {
+    margin-bottom: $spacing-xl;
+    
+    @include lg {
+      flex: 0 0 48%;
+      margin-bottom: 0;
+    }
+  }
+  
+  &__title {
+    @include heading-2;
+    & {
+      margin-bottom: $spacing-md;
+    }
+    
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background-color: $primary-color;
+      margin-top: $spacing-sm;
+    }
+  }
+  
+  &__description {
+    color: $light-text-color;
+    margin-bottom: $spacing-lg;
+    font-size: $font-size-lg;
+    line-height: 1.6;
+  }
+  
+  &__features {
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__feature {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: $spacing-md;
+    
+    &-icon {
+      flex: 0 0 40px;
+      height: 40px;
+      background-color: rgba($primary-color, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: $spacing-md;
+      color: $primary-color;
+    }
+    
+    &-text {
+      flex: 1;
+      
+      h4 {
+        font-weight: 600;
+        margin-bottom: $spacing-xs;
+      }
+      
+      p {
+        color: $light-text-color;
+        font-size: $font-size-base;
+      }
+    }
+  }
+  
+  &__image {
+    position: relative;
+    
+    // Скрываем на мобильных и планшетах
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+    
+    // Показываем только на десктопах
+    @include lg {
+      display: block;
+      flex: 0 0 48%;
+    }
+    
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: $border-radius-lg;
+      
+      &.responsive-image {
+        // Дополнительные стили для изображений в About секции
+        transition: transform 0.3s ease;
+        
+        @include lg {
+          &:hover {
+            transform: scale(1.03);
+          }
+        }
+      }
+    }
+  }
+  
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+    margin-top: $spacing-2xl;
+    
+    @include md {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  &__stat {
+    text-align: center;
+    
+    &-number {
+      font-size: $font-size-3xl;
+      font-weight: 700;
+      color: $primary-color;
+      margin-bottom: $spacing-xs;
+      line-height: 1;
+    }
+    
+    &-label {
+      font-size: $font-size-sm;
+      color: $light-text-color;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+}

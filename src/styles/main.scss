@@ -1,0 +1,105 @@
+@use 'sass:color';
+@use 'variables' as *;
+@use 'mixins' as *;
+@use '../components/Header/header.scss';
+@use '../components/Hero/hero.scss';
+@use '../components/About/about.scss';
+@use '../components/Services/services.scss';
+@use '../components/Cases/cases.scss';
+@use '../components/CTA/cta.scss';
+@use '../components/ContactForm/contact-form.scss';
+@use '../components/Footer/footer.scss';
+
+// Base styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-primary;
+  color: $text-color;
+  background-color: $background-color;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  
+  // Базовые стили для всех изображений
+  &.responsive-image {
+    display: block;
+    
+    // На мобильных устройствах и планшетах скрываем изображения
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+    
+    // На десктопах показываем полностью
+    @include lg {
+      display: block;
+      max-width: 100%;
+    }
+  }
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: color $transition-normal;
+  
+  &:hover {
+    color: color.adjust($primary-color, $lightness: -10%);
+  }
+}
+
+.container {
+  @include container;
+}
+
+section {
+  @include section-padding;
+}
+
+.section-title {
+  @include heading-2;
+  & {
+    margin-bottom: $spacing-lg;
+    text-align: center;
+  }
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: $primary-color;
+    margin: $spacing-sm auto 0;
+  }
+}
+
+.section-subtitle {
+  @include heading-3;
+  margin-bottom: $spacing-md;
+}
+
+.btn {
+  @include button-base;
+}
+
+.btn-primary {
+  @include button-primary;
+}
+
+.btn-secondary {
+  @include button-secondary;
+}
+
+// End of main styles

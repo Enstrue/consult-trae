@@ -1,0 +1,386 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.contact-form {
+  background-color: $light-background-color;
+  
+  &__container {
+    @include container;
+  }
+  
+  &__title {
+    @include heading-2;
+    & {
+      text-align: center;
+      margin-bottom: $spacing-md;
+    }
+  }
+  
+  &__subtitle {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto $spacing-2xl;
+    color: $light-text-color;
+    font-size: $font-size-lg;
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    
+    @include lg {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+  }
+  
+  &__info {
+    margin-bottom: $spacing-xl;
+    
+    @include lg {
+      flex: 0 0 35%;
+      margin-bottom: 0;
+    }
+  }
+  
+  &__info-title {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    margin-bottom: $spacing-md;
+    color: $secondary-color;
+  }
+  
+  &__info-text {
+    color: $light-text-color;
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 $spacing-lg 0;
+  }
+  
+  &__contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-md;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__contact-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba($primary-color, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: $spacing-md;
+    color: $primary-color;
+  }
+  
+  &__contact-text {
+    a {
+      color: $text-color;
+      text-decoration: none;
+      transition: color $transition-normal;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  &__social {
+    margin-top: $spacing-lg;
+  }
+  
+  &__social-title {
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+  }
+  
+  &__social-list {
+    display: flex;
+    gap: $spacing-sm;
+  }
+  
+  &__social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $light-background-color;
+    border: 1px solid $border-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $light-text-color;
+    transition: all $transition-normal;
+    
+    &:hover {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      color: white;
+    }
+  }
+  
+  &__form-wrapper {
+    @include lg {
+      flex: 0 0 60%;
+    }
+  }
+  
+  &__form {
+    @include card;
+    padding: $spacing-xl;
+  }
+  
+  &__form-title {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    margin-bottom: $spacing-lg;
+    color: $secondary-color;
+  }
+  
+  &__form-row {
+    margin-bottom: $spacing-md;
+    
+    &--two-cols {
+      @include md {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-md;
+      }
+    }
+  }
+  
+  &__label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-weight: 500;
+    color: $text-color;
+  }
+  
+  &__input {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-md;
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    transition: all $transition-normal;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+    
+    &--error {
+      border-color: #e53e3e;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(#e53e3e, 0.1);
+      }
+    }
+    
+    &--textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+  }
+  
+  &__checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__checkbox {
+    margin-top: 3px;
+    margin-right: $spacing-sm;
+  }
+  
+  &__checkbox-label {
+    font-size: $font-size-sm;
+    color: $light-text-color;
+    
+    a {
+      color: $primary-color;
+      text-decoration: underline;
+      
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  
+  &__submit {
+    @include button-primary;
+    width: 100%;
+    padding: $spacing-md;
+    font-size: $font-size-lg;
+    border: none;
+    cursor: pointer;
+  }
+  
+  &__status {
+    margin-top: $spacing-md;
+    padding: $spacing-sm;
+    border-radius: $border-radius-md;
+    text-align: center;
+    font-size: $font-size-sm;
+    
+    &--loading {
+      background-color: rgba($primary-color, 0.1);
+      color: $primary-color;
+    }
+    
+    &--success {
+      background-color: rgba(#10b981, 0.1);
+      color: #10b981;
+    }
+    
+    &--error {
+      background-color: rgba(#e53e3e, 0.1);
+      color: #e53e3e;
+    }
+  }
+  
+  &__payment {
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__payment-button {
+    @include button-primary;
+    display: inline-block;
+    text-align: center;
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-size-base;
+    cursor: pointer;
+  }
+}
+
+// Модальное окно для оплаты
+.payment-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-index-modal;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition-normal, visibility $transition-normal;
+  
+  &--active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  &__content {
+    background-color: $background-color;
+    border-radius: $border-radius-lg;
+    padding: $spacing-xl;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    transition: transform $transition-normal;
+    
+    .payment-modal--active & {
+      transform: translateY(0);
+    }
+  }
+  
+  &__close {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $light-text-color;
+    transition: color $transition-normal;
+    
+    &:hover {
+      color: $text-color;
+    }
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    margin-bottom: $spacing-md;
+    color: $secondary-color;
+  }
+  
+  &__text {
+    margin-bottom: $spacing-lg;
+    color: $light-text-color;
+  }
+  
+  &__qr {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $spacing-lg;
+    
+    // Адаптивные стили для QR-кода
+    @include media-breakpoint-down(sm) {
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    img {
+      max-width: 200px;
+      height: auto;
+      
+      // На мобильных устройствах уменьшаем размер
+      @include media-breakpoint-down(sm) {
+        max-width: 150px;
+      }
+      
+      &.responsive-image {
+        // QR-код должен быть виден на всех устройствах
+        display: block !important;
+      }
+    }
+  }
+  
+  &__details {
+    background-color: $light-background-color;
+    padding: $spacing-md;
+    border-radius: $border-radius-md;
+    margin-bottom: $spacing-lg;
+    
+    p {
+      margin: 0 0 $spacing-sm 0;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

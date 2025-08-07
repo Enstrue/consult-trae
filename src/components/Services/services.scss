@@ -1,0 +1,122 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.services {
+  background-color: $light-background-color;
+  
+  &__container {
+    @include container;
+  }
+  
+  &__title {
+    @include heading-2;
+    & {
+      text-align: center;
+      margin-bottom: $spacing-md;
+    }
+  }
+  
+  &__subtitle {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto $spacing-2xl;
+    color: $light-text-color;
+    font-size: $font-size-lg;
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include lg {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  &__card {
+    @include card;
+    padding: $spacing-xl;
+    transition: all $transition-normal;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    &:hover, &--active {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    &-icon {
+      width: 60px;
+      height: 60px;
+      background-color: rgba($primary-color, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: $spacing-lg;
+      color: $primary-color;
+      transition: all $transition-normal;
+      
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    
+    &:hover &-icon, &--active &-icon {
+      background-color: $primary-color;
+      color: white;
+    }
+    
+    &-title {
+      font-size: $font-size-xl;
+      font-weight: 600;
+      margin-bottom: $spacing-md;
+      color: $secondary-color;
+    }
+    
+    &-description {
+      color: $light-text-color;
+      margin-bottom: $spacing-lg;
+      flex-grow: 1;
+    }
+    
+    &-link {
+      display: inline-flex;
+      align-items: center;
+      color: $primary-color;
+      font-weight: 500;
+      
+      svg {
+        margin-left: $spacing-xs;
+        transition: transform $transition-normal;
+      }
+      
+      &:hover svg {
+        transform: translateX(5px);
+      }
+    }
+  }
+  
+  &__cta {
+    text-align: center;
+    margin-top: $spacing-2xl;
+    
+    &-text {
+      margin-bottom: $spacing-md;
+      font-size: $font-size-lg;
+      color: $light-text-color;
+    }
+    
+    &-button {
+      @include button-primary;
+      padding: $spacing-md $spacing-xl;
+    }
+  }
+}

@@ -1,0 +1,144 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background-color: $light-background-color;
+  display: flex;
+  align-items: center;
+  padding-top: 80px; // Account for header height
+  overflow: hidden;
+  
+  // Уменьшаем высоту на мобильных устройствах
+  @include media-breakpoint-down(lg) {
+    min-height: auto;
+    padding: 100px 0 60px;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(135deg, rgba($primary-color, 0.05) 0%, rgba($primary-color, 0.01) 100%);
+    z-index: 1;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($primary-color, 0.03);
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    
+    @include lg {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  
+  &__content {
+    max-width: 600px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+    
+    &--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    @include lg {
+      flex: 0 0 50%;
+    }
+  }
+  
+  &__title {
+    @include heading-1;
+    & {
+      margin-bottom: $spacing-md;
+      color: $secondary-color;
+    }
+  }
+  
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $light-text-color;
+    margin-bottom: $spacing-xl;
+    max-width: 500px;
+    
+    @include md {
+      font-size: $font-size-xl;
+    }
+  }
+  
+  &__cta {
+    @include button-primary;
+    & {
+      padding: $spacing-md $spacing-xl;
+      font-size: $font-size-lg;
+      margin-right: $spacing-md;
+      margin-bottom: $spacing-md;
+    }
+  }
+  
+  &__secondary-cta {
+    @include button-secondary;
+    & {
+      padding: $spacing-md $spacing-xl;
+      font-size: $font-size-lg;
+      margin-top: $spacing-md;
+    }
+    
+    @include md {
+      margin-top: 0;
+    }
+  }
+  
+  &__image {
+    margin-top: $spacing-2xl;
+    max-width: 100%;
+    position: relative;
+    
+    // Скрываем на мобильных и планшетах
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+    
+    // Показываем только на десктопах
+    @include lg {
+      display: block;
+      flex: 0 0 45%;
+      margin-top: 0;
+    }
+    
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: $border-radius-lg;
+      
+      // Альтернативный вариант - можно использовать класс responsive-image
+      // для более гибкого управления через общие стили
+      &.responsive-image {
+        // Дополнительные стили для изображений в Hero секции
+        box-shadow: 0 10px 25px rgba($primary-color, 0.1);
+      }
+    }
+  }
+}
