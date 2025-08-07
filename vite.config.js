@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
+  base: '/consult/',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -9,9 +10,7 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      scss: {
-        // Не нужно добавлять дополнительные импорты, так как они уже есть в main.scss
-      },
+      scss: {},
     },
   },
   build: {
